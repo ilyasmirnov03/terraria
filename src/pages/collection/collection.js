@@ -1,8 +1,7 @@
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('input[type="checkbox"]').forEach((check) => {
-        check.addEventListener("click", function() {
-            console.log(this.checked);
-            console.log(this.id);
-        });
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelector('tbody').addEventListener('click', function (e) {
+        if (e.target.tagName === "INPUT") {
+            console.log(e.target);
+        }
     });
 });
