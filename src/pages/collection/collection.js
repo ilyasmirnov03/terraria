@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
     window.msIndexedDB ||
     window.shimIndexedDB;
 
-  let db;
   //Creating database if not found, else opening existing database
   const request = indexedDB.open("TerrariaItems", 1);
 
@@ -28,16 +27,37 @@ document.addEventListener("DOMContentLoaded", function () {
     const db = request.result;
     // creating table and assigning a primary key "id"
     const objectStore = db.createObjectStore("collection", { keyPath: "id" });
-    objectStore.createIndex("item", "item", { unique: "false" });
+    objectStore.createIndex("isCollected", "isCollected", { unique: "false" });
   };
 
   // Execute all database operations on success
   request.onsuccess = (event) => {
     const db = request.result;
     const transaction = db.transaction("collection", "readwrite");
+    // reference to store created
+    const store = transaction.objectStore("collection");
+    const itemIndex = store.index("isCollected");
 
-    
+    store.put({ id: 1, IsCollected: true });
+
+    const idQuery = store.get(1);
+
+    idQuery.onsuccess = () => {
+      console.log(idQuery.result);
+    }
+
+    transaction.oncomplete = () => {
+      db.close();
+    }
   };
+
+  function uncheck(id) {
+
+  }
+
+  function check(id) {
+
+  }
 
   //Checkboxes click event
   document.querySelector("tbody").addEventListener("click", function (e) {
