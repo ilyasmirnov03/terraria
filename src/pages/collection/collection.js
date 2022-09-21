@@ -1,30 +1,48 @@
-document.addEventListener('DOMContentLoaded', function () {
-
-    class IsCollected {
-        constructor(id, collected) {
-            this.id = id;
-            this.collected = collected;
-        }
+document.addEventListener("DOMContentLoaded", function () {
+  class IsCollected {
+    constructor(id, collected) {
+      this.id = id;
+      this.collected = collected;
     }
+  }
 
-    const request = indexedDB.open("MyTestDatabase", 3);
-    console.log(request);
+  //Check for presence in browser
+  const indexedDB =
+    window.indexedDB ||
+    window.mozIndexedDB ||
+    window.webkitIndexedDB ||
+    window.msIndexedDB ||
+    window.shimIndexedDB;
+
+  let db;
+  //Creating database if not found, else opening existing database
+  const request = indexedDB.open("TerrariaItems", 1);
+
+  //Handling errors while opening database
+  request.onerror = (event) => {
+    console.log(event.target.errorCode);
+  };
+
+  //Runs whenever a new database is created or an existing database ver. number is changed
+  request.onupgradeneeded = (event) => {
+    const db = request.result;
+    // creating table and assigning a primary key "id"
+    const objectStore = db.createObjectStore("collection", { keyPath: "id" });
+    objectStore.createIndex("item", "item", { unique: "false" });
+  };
+
+  // Execute all database operations on success
+  request.onsuccess = (event) => {
+    const db = request.result;
+    const transaction = db.transaction("collection", "readwrite");
+
     
-    request.onerror = (event) => {
-        console.log(event.target.errorCode);
-    };
-    request.onsuccess = (event) => {
-        console.log("200")
-    };
-    request.onupgradeneeded = (event) => {
-        const db = event.target.result;
-        console.log(db);
+  };
+
+  //Checkboxes click event
+  document.querySelector("tbody").addEventListener("click", function (e) {
+    if (e.target.tagName === "INPUT") {
+      console.log(e.target);
     }
-
-    
-    document.querySelector('tbody').addEventListener('click', function (e) {
-        if (e.target.tagName === "INPUT") {
-            console.log(e.target);
-        }
-    });
+  });
 });
