@@ -1,22 +1,26 @@
-document.addEventListener("DOMContentLoaded", function () {
-  class IsCollected {
-    constructor(id, collected) {
-      this.id = id;
-      this.collected = collected;
-    }
+// Data constructor for putting in DB
+class IsCollected {
+  constructor(id, collected) {
+    this.id = id;
+    this.collected = collected;
   }
+}
 
-  //Check for presence in browser
-  const indexedDB =
-    window.indexedDB ||
-    window.mozIndexedDB ||
-    window.webkitIndexedDB ||
-    window.msIndexedDB ||
-    window.shimIndexedDB;
+// Main object
+const leeass = {};
+leeass.db = null;
 
+//Check for presence in browser
+const indexedDB =
+  window.indexedDB ||
+  window.mozIndexedDB ||
+  window.webkitIndexedDB ||
+  window.msIndexedDB ||
+  window.shimIndexedDB;
+
+leeass.openDB = function () {
   //Creating database if not found, else opening existing database
   const request = indexedDB.open("TerrariaItems", 1);
-
   //Handling errors while opening database
   request.onerror = (event) => {
     console.log(event.target.errorCode);
@@ -30,39 +34,91 @@ document.addEventListener("DOMContentLoaded", function () {
     objectStore.createIndex("isCollected", "isCollected", { unique: "false" });
   };
 
-  // Execute all database operations on success
+  // On success of opening database
   request.onsuccess = (event) => {
-    const db = request.result;
-    const transaction = db.transaction("collection", "readwrite");
-    // reference to store created
-    const store = transaction.objectStore("collection");
-    const itemIndex = store.index("isCollected");
-
-    store.put({ id: 1, IsCollected: true });
-
-    const idQuery = store.get(1);
-
-    idQuery.onsuccess = () => {
-      console.log(idQuery.result);
-    }
-
-    transaction.oncomplete = () => {
-      db.close();
-    }
+    leeass.db = event.target.result;
+    leeass.getAllChecks();
   };
+}
 
-  function uncheck(id) {
+/* ================================= 
+Triggers on succes of leeass.openDB
+================================= */
 
-  }
+leeass.getAllChecks = function () {
+  const db = leeass.db;
+  const trans = db.transaction(["collection"], "readwrite");
+  const store = trans.objectStore("collection");
 
-  function check(id) {
+  // Get everything in the store
+  const keyRange = IDBKeyRange.lowerBound(0);
+  const cursorRequest = store.openCursor(keyRange);
 
-  }
+  cursorRequest.onsuccess = function (e) {
+    const result = e.target.result;
+    if (!!result == false)
+      return;
+    leeass.renderChecks(result.value.id);
+    result.continue();
+  };
+}
+
+/* ================================= 
+Triggers on event listeners when DOMContent loaded
+================================= */
+
+leeass.renderChecks = function (id) {
+  const checks = document.querySelectorAll('input[type="checkbox"]');
+  checks[id - 1].setAttribute("checked", "");
+}
+
+leeass.uncheck = function (id) {
+  const db = leeass.db;
+  const transaction = db.transaction(["collection"], "readwrite");
+  const store = transaction.objectStore("collection");
+
+  const request = store.delete(id);
+
+  request.onerror = function (e) {
+    console.log("Error Adding: ", e);
+  };
+}
+
+leeass.check = function (id) {
+  const db = leeass.db;
+  const transaction = db.transaction(["collection"], "readwrite");
+  const store = transaction.objectStore("collection");
+
+  const data = new IsCollected(id, true);
+
+  const request = store.put(data);
+
+  request.onerror = function (e) {
+    console.log("Error Adding: ", e);
+  };
+}
+
+window.addEventListener("load", function () {
+  const loader = document.querySelector("#loader"); 
+  loader.classList.add("loader-hidden");
+
+  loader.addEventListener("transitionend", function() {
+    document.body.removeChild(this);
+  });
+});
+
+window.addEventListener("DOMContentLoaded", function () {
+
+  leeass.openDB();
 
   //Checkboxes click event
   document.querySelector("tbody").addEventListener("click", function (e) {
     if (e.target.tagName === "INPUT") {
-      console.log(e.target);
+      if (e.target.checked === true) {
+        leeass.check(e.target.id);
+      } else {
+        leeass.uncheck(e.target.id);
+      }
     }
   });
 });

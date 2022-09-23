@@ -8,6 +8,11 @@ echo head('Collect them all!', url('/tailwind/output.css'));
 ?>
 
 <body>
+    <div id="loader" class="flex justify-center items-center">
+        <div>
+            <img class="animate-spin" src="<?php echo url('/assets/images/Boulder.png') ?>" alt="It's a boulder">
+        </div>
+    </div>
     <main class="p-4">
         <table class="table-fixed text-xl">
             <thead>
@@ -26,11 +31,7 @@ echo head('Collect them all!', url('/tailwind/output.css'));
                         <td class="w-32 py-4"><?php echo $item['name']; ?></td>
                         <td class="py-4 text-center"> <code class="bg-gray-100 p-1"><?php echo $item['internalName']; ?></td></code>
                         <td class="w-2 py-4">
-                            <?php if ($item['isCollected'] == 1) { ?>
-                                <input type="checkbox" checked id="<?php echo $item['id'] ?>">
-                            <?php } else { ?>
-                                <input type="checkbox" id="<?php echo $item['id'] ?>">
-                            <?php } ?>
+                            <input type="checkbox" id="<?php echo $item['id'] ?>">
                         </td>
                     </tr>
                 <?php } ?>
