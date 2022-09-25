@@ -3,25 +3,29 @@
 @tailwind utilities;
 
 @font-face {
-    font-family: 'Andy-Bold';
-      src:  url('../assets/fonts/andy-bold/Andy-Bold.ttf.woff') format('woff'),
-      url('../assets/fonts/andy-bold/Andy-Bold.ttf.svg#Andy-Bold') format('svg'),
-      url('../assets/fonts/andy-bold/Andy-Bold.ttf.eot'),
-      url('../assets/fonts/andy-bold/Andy-Bold.eot?#iefix') format('embedded-opentype'); 
-      font-weight: normal;
-      font-style: normal;
+  font-family: 'Andy-Bold';
+  src: url('../assets/fonts/andy-bold/Andy-Bold.ttf.woff') format('woff'),
+    url('../assets/fonts/andy-bold/Andy-Bold.ttf.svg#Andy-Bold') format('svg'),
+    url('../assets/fonts/andy-bold/Andy-Bold.ttf.eot'),
+    url('../assets/fonts/andy-bold/Andy-Bold.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
 }
 
 #loader {
-  position:fixed;
-  top:0;
-  left:0;
-  height:100%;
-  width:100%;
-  background-color:#4b795b;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #4b795b;
 }
 
-.loader-hidden{
-  transition:.33s ease;
-  opacity:0;
+.loader-hidden {
+  transition: .33s ease;
+  opacity: 0;
+}
+
+.item-hidden {
+  display: none;
 }

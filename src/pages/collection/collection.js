@@ -9,6 +9,7 @@ class IsCollected {
 // Main object
 const leeass = {};
 leeass.db = null;
+leeass.itemsNum = 0;
 
 //Check for presence in browser
 const indexedDB =
@@ -38,6 +39,7 @@ leeass.openDB = function () {
   request.onsuccess = (event) => {
     leeass.db = event.target.result;
     leeass.getAllChecks();
+    leeass.getAllQ();
   };
 }
 
@@ -56,21 +58,27 @@ leeass.getAllChecks = function () {
 
   cursorRequest.onsuccess = function (e) {
     const result = e.target.result;
-    if (!!result == false)
-      return;
+    if (!!result == false) return;
     leeass.renderChecks(result.value.id);
     result.continue();
   };
+};
+
+leeass.getAllQ = function () {
+  const db = leeass.db;
+  const trans = db.transaction(["collection"], "readonly");
+  const store = trans.objectStore("collection");
+
+  store.getAll().onsuccess = function (e) {
+    leeass.itemsNum = e.target.result.length;
+    document.querySelector("#percent-collected").textContent = `${leeass.percentage()}% collected`;
+    leeass.renderStatCircle();
+  }
 }
 
 /* ================================= 
 Triggers on event listeners when DOMContent loaded
 ================================= */
-
-leeass.renderChecks = function (id) {
-  const checks = document.querySelectorAll('input[type="checkbox"]');
-  checks[id - 1].setAttribute("checked", "");
-}
 
 leeass.uncheck = function (id) {
   const db = leeass.db;
@@ -78,6 +86,8 @@ leeass.uncheck = function (id) {
   const store = transaction.objectStore("collection");
 
   const request = store.delete(id);
+
+  leeass.getAllQ();
 
   request.onerror = function (e) {
     console.log("Error Adding: ", e);
@@ -93,16 +103,32 @@ leeass.check = function (id) {
 
   const request = store.put(data);
 
+  leeass.getAllQ();
+
   request.onerror = function (e) {
     console.log("Error Adding: ", e);
   };
 }
 
+leeass.renderChecks = function (id) {
+  const checks = document.querySelectorAll('input[type="checkbox"]');
+  checks[id - 1].setAttribute("checked", "");
+}
+
+leeass.percentage = function () {
+  return Math.round((leeass.itemsNum / document.querySelectorAll('input[type="checkbox"').length * 100) * 100) / 100;
+}
+
+leeass.renderStatCircle = function () {
+  document.querySelector("#stat-circle").style.top = `${100 - leeass.percentage()}%`;
+}
+
+// Simple loader
 window.addEventListener("load", function () {
-  const loader = document.querySelector("#loader"); 
+  const loader = document.querySelector("#loader");
   loader.classList.add("loader-hidden");
 
-  loader.addEventListener("transitionend", function() {
+  loader.addEventListener("transitionend", function () {
     document.body.removeChild(this);
   });
 });
@@ -116,8 +142,10 @@ window.addEventListener("DOMContentLoaded", function () {
     if (e.target.tagName === "INPUT") {
       if (e.target.checked === true) {
         leeass.check(e.target.id);
+        leeass.getAllQ();
       } else {
         leeass.uncheck(e.target.id);
+        leeass.getAllQ();
       }
     }
   });
