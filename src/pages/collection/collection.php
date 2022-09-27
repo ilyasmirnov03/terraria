@@ -50,8 +50,8 @@ echo head('Collect them all!', url('/tailwind/output.css'));
             </div>
         </div>
     </main>
-    <script src="<?php echo url('/../src/pages/collection/collection.js') ?>"></script>
-    <script src="<?php echo url('/../src/pages/collection/itemSearch.js') ?>"></script>
+    <script src="<?php echo url('/assets/js/collection/collection.js') ?>"></script>
+    <script src="<?php echo url('/assets/js/collection/itemSearch.js') ?>"></script>
 </body>
 
 </html>

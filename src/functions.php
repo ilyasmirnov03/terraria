@@ -32,7 +32,7 @@ HTML_FOOTER;
 
 function url(string $url = '') : string
 {
-  $url = substr($url, 0, 1) != '/' ? '/' & $url : $url;
+  $url = substr($url, 0, 1) != '/' ? '/' . $url : $url;
   return APP_ROOT_URL_COMPLETE . $url;
 }
 
