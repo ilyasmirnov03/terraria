@@ -22,7 +22,19 @@ echo head('Collect them all!', url('/tailwind/output.css'));
                         <th>ID</th>
                         <th>Name</th>
                         <th>Internal name</th>
-                        <th>Completed?</th>
+                        <th class="flex items-center">
+                            <div>
+                                Completed?
+                            </div>
+                            <div class="ml-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" id="up-arrow" class="w-5 h-5 hover:text-green-600 hover:cursor-pointer">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" id="down-arrow" class="w-5 h-5 hover:text-green-600 hover:cursor-pointer">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                </svg>
+                            </div>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,10 +58,11 @@ echo head('Collect them all!', url('/tailwind/output.css'));
                 <div class="w-64 h-64 rounded-full bg-gray-100 relative overflow-hidden">
                     <div id="stat-circle" class="absolute w-full h-full bg-green-600"></div>
                 </div>
-                <p id="percent-collected" class="text-4xl drop-shadow-sm absolute"></p>    
+                <p id="percent-collected" class="text-4xl drop-shadow-sm absolute"></p>
             </div>
         </div>
     </main>
+    <script src="<?php echo url('/assets/js/collection/itemsFilter.js') ?>"></script>
     <script src="<?php echo url('/assets/js/collection/collection.js') ?>"></script>
     <script src="<?php echo url('/assets/js/collection/itemSearch.js') ?>"></script>
 </body>
