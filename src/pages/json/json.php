@@ -9,7 +9,6 @@
 </head>
 
 <body>
-    <main>
         <div id="bg-image"></div>
 
         <button id="prepare">Prepare JSON file for download</button>
@@ -18,8 +17,7 @@
 
         <div id="code"></div>
 
-        <script src="jsondl.js"></script>
-    </main>
+        <script src="<?php echo url("/assets/js/jsondl/jsondl.js") ?>"></script>
 </body>
 
 </html>

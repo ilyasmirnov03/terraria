@@ -9,10 +9,10 @@ switch ($route) {
     case '/':
         require 'pages/collection/collection.php';
         break;
-    case 'download':
-        require 'pages/jsondl/jsondl.php';
+    case '/d':
+        require 'pages/json/json.php';
         break;
     default:
         require 'pages/404.php';
         break;
-}
+}   
