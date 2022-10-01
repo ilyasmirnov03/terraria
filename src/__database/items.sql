@@ -1,4 +1,4 @@
-CREATE TABLE mytable(
+CREATE TABLE items(
    id           INTEGER  NOT NULL PRIMARY KEY 
   ,name         VARCHAR(47) NOT NULL
   ,internalName VARCHAR(47) NOT NULL

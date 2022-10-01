@@ -15,7 +15,7 @@ function head(string $title = '', string $link = ''): string
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="$link" rel="stylesheet">
   <title>$title</title>
 </head>
@@ -30,7 +30,7 @@ function doc_end(): string
 HTML_FOOTER;
 }
 
-function url(string $url = '') : string
+function url(string $url = ''): string
 {
   $url = substr($url, 0, 1) != '/' ? '/' . $url : $url;
   return APP_ROOT_URL_COMPLETE . $url;
