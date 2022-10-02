@@ -752,6 +752,22 @@ select {
   top: 0px;
 }
 
+.top-9 {
+  top: 2.25rem;
+}
+
+.right-9 {
+  right: 2.25rem;
+}
+
+.top-6 {
+  top: 1.5rem;
+}
+
+.right-6 {
+  right: 1.5rem;
+}
+
 .z-50 {
   z-index: 50;
 }
@@ -765,8 +781,25 @@ select {
   margin-bottom: 2rem;
 }
 
+.my-9 {
+  margin-top: 2.25rem;
+  margin-bottom: 2.25rem;
+}
+
 .ml-2 {
   margin-left: 0.5rem;
+}
+
+.mt-9 {
+  margin-top: 2.25rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.inline {
+  display: inline;
 }
 
 .flex {
@@ -785,6 +818,10 @@ select {
   height: 1.5rem;
 }
 
+.h-11 {
+  height: 2.75rem;
+}
+
 .h-5 {
   height: 1.25rem;
 }
@@ -799,18 +836,6 @@ select {
 
 .h-full {
   height: 100%;
-}
-
-.h-16 {
-  height: 4rem;
-}
-
-.h-8 {
-  height: 2rem;
-}
-
-.h-11 {
-  height: 2.75rem;
 }
 
 .w-6 {
@@ -948,6 +973,11 @@ select {
   line-height: 2.25rem;
 }
 
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
 .text-green-600 {
   --tw-text-opacity: 1;
   color: rgb(22 163 74 / var(--tw-text-opacity));
@@ -1008,7 +1038,7 @@ select {
   display: none;
 }
 
-@media screen and (max-width:1023px) {
+@media screen and (max-width:767px) {
   #stats {
     right:-100%;
   }
@@ -1044,6 +1074,10 @@ select {
 }
 
 @media (min-width: 768px) {
+  .md\:relative {
+    position: relative;
+  }
+
   .md\:block {
     display: block;
   }
@@ -1051,53 +1085,43 @@ select {
   .md\:table-cell {
     display: table-cell;
   }
-}
 
-@media (min-width: 1024px) {
-  .lg\:relative {
-    position: relative;
-  }
-
-  .lg\:block {
-    display: block;
-  }
-
-  .lg\:hidden {
+  .md\:hidden {
     display: none;
   }
 
-  .lg\:h-fit {
+  .md\:h-fit {
     height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
   }
 
-  .lg\:h-64 {
+  .md\:h-64 {
     height: 16rem;
   }
 
-  .lg\:w-64 {
+  .md\:w-64 {
     width: 16rem;
   }
 
-  .lg\:grow {
+  .md\:grow {
     flex-grow: 1;
   }
 
-  .lg\:flex-row {
+  .md\:flex-row {
     flex-direction: row;
   }
 
-  .lg\:bg-transparent {
+  .md\:bg-transparent {
     background-color: transparent;
   }
 
-  .lg\:text-4xl {
+  .md\:text-4xl {
     font-size: 2.25rem;
     line-height: 2.5rem;
   }
 
-  .lg\:drop-shadow-none {
+  .md\:drop-shadow-none {
     --tw-drop-shadow: drop-shadow(0 0 #0000);
     filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
   }
