@@ -52,7 +52,7 @@ echo head('Collect them all!', url('/tailwind/output.css'));
                                 <?php echo $item['name']; ?>
                             </td>
                             <td class="text-center">
-                                <img src="<?php echo url('/assets/images/items/Item_') . $item['id'] . ".png" ?>" loading="lazy" class="inline" alt="">
+                                <img src="https://ilyasmirnov.alwaysdata.net/images/items/Item_<?php echo $item['id'] . ".png" ?>" loading="lazy" class="inline" alt="<?php echo $item['name'] ?>">
                             </td>
                             <!-- <td class="py-4 text-center hidden md:block"> <code class="bg-gray-100 p-1"><?php echo $item['internalName']; ?></td></code> -->
                             <td class="w-2 py-4 text-center">
