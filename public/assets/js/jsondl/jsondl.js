@@ -1,7 +1,5 @@
 window.addEventListener("DOMContentLoaded", function () {
-  let json = {
-    items: [],
-  };
+  let json = [];
 
   class item {
     constructor(id, name, internalName) {
@@ -28,7 +26,7 @@ window.addEventListener("DOMContentLoaded", function () {
             cell.querySelector(":nth-child(2)").textContent,
             cell.querySelector(":nth-child(3)").textContent
           );
-          json.items.push(newItem);
+          json.push(newItem);
         });
       })
       .finally(() => {

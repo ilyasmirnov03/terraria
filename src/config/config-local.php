@@ -1,5 +1,3 @@
 <?php
-define('APP_DB_NAME', 'allterrariaitems');
-define('APP_DB_HOST', 'localhost');
-define('APP_DB_USER', 'root');
-define('APP_DB_PASSWORD', '');
+
+define('MONGO_DB_CONN', 'mongodb://localhost:27017');

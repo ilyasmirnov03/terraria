@@ -1,7 +1,8 @@
 <?php
 
-$sql = "SELECT * FROM items";
-$items = $dbh->query($sql)->fetchAll();
+use App\Model\Items;
+
+$items = Items::getInstance()->findAll();
 
 echo head('Collect them all!', url('/tailwind/output.css'));
 

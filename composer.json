@@ -3,6 +3,12 @@
     "type": "project",
     "minimum-stability": "stable",
     "require": {
-        "symfony/webpack-encore-bundle": "^1.16"
+        "symfony/webpack-encore-bundle": "^1.16",
+        "mongodb/mongodb": "^1.12"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src"
+        }
     }
 }
