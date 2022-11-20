@@ -4,10 +4,10 @@
 
 @font-face {
   font-family: 'Andy-Bold';
-  src: url('../assets/fonts/andy-bold/Andy-Bold.ttf.woff') format('woff'),
-    url('../assets/fonts/andy-bold/Andy-Bold.ttf.svg#Andy-Bold') format('svg'),
-    url('../assets/fonts/andy-bold/Andy-Bold.ttf.eot'),
-    url('../assets/fonts/andy-bold/Andy-Bold.eot?#iefix') format('embedded-opentype');
+  src: url('./../assets/fonts/andy-bold/Andy-Bold.ttf.woff') format('woff'),
+    url('./../assets/fonts/andy-bold/Andy-Bold.ttf.svg#Andy-Bold') format('svg'),
+    url('./../assets/fonts/andy-bold/Andy-Bold.ttf.eot'),
+    url('./../assets/fonts/andy-bold/Andy-Bold.eot?#iefix') format('embedded-opentype');
   font-weight: normal;
   font-style: normal;
 }

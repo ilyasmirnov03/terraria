@@ -1,0 +1,8 @@
+{
+    "name": "ilya/terraria",
+    "type": "project",
+    "minimum-stability": "stable",
+    "require": {
+        "symfony/webpack-encore-bundle": "^1.16"
+    }
+}
